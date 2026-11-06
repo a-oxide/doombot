@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+data/*.wad
+data/*.cfg
+corpus/
+adapters/
+runs/
+*.npz
+*.npy
+_vizdoom.ini
+_vizdoom/
