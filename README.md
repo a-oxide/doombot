@@ -66,6 +66,32 @@ quoted per 1,000 tics; raw per-episode totals favour whichever policy survives l
 Deaths are taken from the game's own death state at the end of the episode, not from
 health crossing zero.
 
+## calibration
+
+held out by episode, not by row: the last 5 of 20 recorded episodes, 2,379 decisions the
+adapter has never seen. one temperature (0.60) fitted by nll on a disjoint slice of the
+remaining episodes.
+
+    accuracy        0.973
+    brier           0.0436 -> 0.0410
+    ece             0.0822 -> 0.0148
+
+the errors stay where you can see them. escalating everything under a threshold costs a
+little coverage and buys the failures back:
+
+    threshold   kept    acc(kept)   escalated   errors caught
+    0.80        98.3%   0.983       1.7%        37.5%
+    0.90        97.6%   0.988       2.4%        57.8%
+    0.95        96.5%   0.992       3.5%        71.9%
+
+so an operator can price the decision: keep 96.5% of calls at 99.2% accuracy and hand up
+3.5% of them, which carries 72% of the mistakes.
+
+one caveat that matters. this measures agreement with the teacher's choice, not whether
+the choice was good. a decision the teacher would not have made can still be the right
+one, and it is counted as an error here. what the numbers support is that the probability
+ranks its own disagreement, not that it knows what winning is.
+
 ## layout
 
     src/dmodel/actions.py      option tables and tic counts
@@ -75,6 +101,7 @@ health crossing zero.
     src/dmodel/teacher.py      scripted policy
     src/dmodel/readout.py      prompt, letter readout, model loading
     src/dmodel/rollout.py      one episode of play, shared move functions
+    src/dmodel/calibrate.py    episode-level holdout, ece/brier, escalation
     src/dmodel/{record,train,evaluate,introspect}.py   entry points
 
 `python -m pytest tests` if you want the two invariant checks. no GPU needed;
