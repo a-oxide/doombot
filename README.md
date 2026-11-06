@@ -1,8 +1,9 @@
 # dmodel
 
 A 2B language model plays deathmatch on a modified Doom map by reading a text state
-and picking one of twelve options. It is trained by imitation: a scripted teacher plays,
-the decisions are recorded, and a LoRA is fit to the 12-way letter readout.
+and picking one of twelve options. It is a decision model, not a chat model: one forward
+pass, twelve letter logits, argmax, no tokens generated. It is trained by imitation — a
+scripted teacher plays, the decisions are recorded, and a LoRA is fit to that readout.
 
 ## result
 
@@ -76,8 +77,11 @@ remaining episodes.
     brier           0.0436 -> 0.0410
     ece             0.0822 -> 0.0148
 
-the errors stay where you can see them. escalating everything under a threshold costs a
-little coverage and buys the failures back:
+before scaling it was underconfident overall (0.904 stated against 0.973 actual) and
+badly overconfident on a thin tail: the 58 decisions it hedged hardest were right
+somewhere between 23% and 50% of the time. one temperature corrects the scale; the
+threshold table is what makes the shape usable, because escalating a decision you are
+unsure of costs a little coverage and buys most of the failures back:
 
     threshold   kept    acc(kept)   escalated   errors caught
     0.80        98.3%   0.983       1.7%        37.5%
