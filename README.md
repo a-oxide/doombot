@@ -20,6 +20,18 @@ mean per episode:
 Damage per 1,000 tics is about 140 for both. The student plays fewer long episodes
 because it dies earlier.
 
+## inside a decision
+
+One frame of the 77-second clip, cropped to the model half. Left to right: residual
+magnitude at the final token for each layer, a layer-by-dimension heatmap on a per-layer
+scale, the twelve option probabilities, the field ablation that this decision depended on,
+and the margin over the runner-up. One frame per game tic, seed 22.
+
+![](media/activation-preview.gif)
+
+[full clip, 77 s](media/activation-22.mp4). The play is on the left of the uncropped
+version, so the two halves can be read against each other.
+
 ## method
 
 The teacher is a hand-written policy: turn onto the largest visible enemy, fire within
