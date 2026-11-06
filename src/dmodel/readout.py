@@ -50,7 +50,7 @@ def load(name, adapter=None):
 
 
 def last_logits(model, enc):
-    """logits at the final position only; transformers 4.45+ can skip the rest."""
+    # logits at the final position only; newer transformers can skip computing the rest
     try:
         return model(**enc, logits_to_keep=1).logits[:, -1, :].float()
     except TypeError:

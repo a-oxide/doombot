@@ -90,7 +90,7 @@ def read(path):
 
 
 def write(path, lumps):
-    """data first, directory last, the way every doom iwad is laid out."""
+    # data first, directory last, the way every iwad is laid out
     body, table = bytearray(), bytearray()
     for name, data in lumps:
         table += struct.pack("<ii8s", 12 + len(body), len(data), name.encode().ljust(8, b"\0"))

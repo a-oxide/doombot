@@ -6,7 +6,8 @@ the decisions are recorded, and a LoRA is fit to the 12-way letter readout.
 
 ## result
 
-20 seeds (21-40), same arena, same starting state. kills / damage per episode:
+20 seeds (21-40), same arena, same starting state. player-attributed kills / damage,
+mean per episode:
 
 | cap | teacher | student |
 |-----|---------|---------|
@@ -76,6 +77,7 @@ health crossing zero.
     src/dmodel/rollout.py      one episode of play, shared move functions
     src/dmodel/{record,train,evaluate,introspect}.py   entry points
 
-`python -m pytest tests` if you want the two invariant checks; they run without a GPU.
+`python -m pytest tests` if you want the two invariant checks. no GPU needed;
+the metrics test does need vizdoom importable.
 
 MIT licensed, see LICENSE.

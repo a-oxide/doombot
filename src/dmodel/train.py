@@ -27,7 +27,7 @@ def corpus(path, n):
 
 
 def dev_kills(model, tok, ids_t, letters, grid, seeds, cap):
-    """played-out kills per episode; this is the selection signal, not val loss."""
+    # played-out kills per episode: this is the selection signal, not val loss
     out = []
     for seed in seeds:
         env = Arena(tics=cap, seed=seed)

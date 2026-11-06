@@ -9,7 +9,7 @@ from .teacher import Teacher
 
 
 def student_move(model, tok, ids_t, letters, nav):
-    """the model picks an option; index 11 hands the step to the patrol controller."""
+    # the model picks an option; index 11 hands this step to the patrol controller
     def move(state, env, moved, last_nav, t):
         idx, _ = readout.choose(model, tok, ids_t, readout.prompt(state, A.OPTIONS12, letters))
         if idx != A.NAV:
@@ -32,7 +32,7 @@ def teacher_move(nav):
 
 
 def play(env, move, cap):
-    """run one episode; move(state, env, moved, used_nav, t) -> (row, tics, used_nav)."""
+    # move(state, env, moved, used_nav, t) -> (row, tics, used_nav)
     env.reset()
     env.state()
     t = 0
