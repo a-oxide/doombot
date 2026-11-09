@@ -22,7 +22,8 @@ because it dies earlier.
 
 ## inside a decision
 
-Seven seconds of the 77-second clip from a firefight, one frame per game tic. Left, the bot playing, with the
+Six seconds of the 77-second clip from tic 1,632, one frame per game tic: the bot is
+armed, turning onto a zombieman at close range with 15 kills on the counter. Left, the bot playing, with the
 chosen option and its duration, health, damage, kills and the tic and decision numbers on
 screen. Right, the model at that instant: residual magnitude at the final token for each
 layer, a layer-by-dimension heatmap on a per-layer scale, the twelve option probabilities,
