@@ -22,15 +22,15 @@ because it dies earlier.
 
 ## inside a decision
 
-One frame of the 77-second clip, cropped to the model half. Left to right: residual
-magnitude at the final token for each layer, a layer-by-dimension heatmap on a per-layer
-scale, the twelve option probabilities, the field ablation that this decision depended on,
-and the margin over the runner-up. One frame per game tic, seed 22.
+Six seconds of the 77-second clip, one frame per game tic. Left, the bot playing, with the
+chosen option and its duration, health, damage, kills and the tic and decision numbers on
+screen. Right, the model at that instant: residual magnitude at the final token for each
+layer, a layer-by-dimension heatmap on a per-layer scale, the twelve option probabilities,
+the field ablation this decision depended on, and the margin over the runner-up. Seed 22.
 
 ![](media/activation-preview.gif)
 
-[full clip, 77 s](media/activation-22.mp4). The play is on the left of the uncropped
-version, so the two halves can be read against each other.
+[full clip, 77 s](media/activation-22.mp4).
 
 ## method
 
